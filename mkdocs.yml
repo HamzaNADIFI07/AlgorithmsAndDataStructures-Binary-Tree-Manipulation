@@ -9,7 +9,6 @@ theme:
 
 nav:
   - Rendu: index.md
-  - Documentation: modules.md
   
 plugins:
 - search
