@@ -28,7 +28,7 @@ $(PROJECT).zip:
 	zip -r $@ . -x "sol/*" -x "site/*" -x "*~" -x "*.pyc" -x "*.DS_Store" -x "*__MACOSX/*" -x "*__pycache__/*" -x ".git/*" -x "enonce*"
 
 test:
-	@$(foreach file, $(FULL_SOURCES), $(call execute-command,python3 $(file)))
+	make -C src && src/Test_arbre
 author:
 	sed -i -e 's/^site_name:.*/site_name: "Module $(PROJECT)"/g' mkdocs.yml
 	sed -i -e 's/^copyright:.*/copyright: "2015-2022, $(AUTHOR), Univ. Lille"/g' mkdocs.yml
