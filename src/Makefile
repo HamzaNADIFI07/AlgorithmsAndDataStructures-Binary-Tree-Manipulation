@@ -1,18 +1,18 @@
 CC=gcc
 OPT=-Wall -ansi -pedantic -g
 
-all:Test_arbre
+all:Test_tree
 
-%_arbre: %_arbre.c Affichage.o ArbreBinaire.o
+%_tree: %_tree.c Display.o BinaryTree.o
 	$(CC) $(OPT) -o $@  $^
 
 %.pdf: %.gv
 	dot -Tpdf -o $@ $^
 
-Affichage.o : Affichage.c
+Display.o : Display.c
 	$(CC) $(OPT) -c $<
 
-ArbreBinaire.o: ArbreBinaire.c ArbreBinaire.h
+BinaryTree.o: BinaryTree.c BinaryTree.h
 	$(CC) $(OPT) -c $<
 
 clean:
