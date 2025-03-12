@@ -1,5 +1,5 @@
 #ifndef ARBREBINAIRE
-#include "ArbreBinaire.h"
+#include "BinaryTree.h"
 #endif
 
 /**
