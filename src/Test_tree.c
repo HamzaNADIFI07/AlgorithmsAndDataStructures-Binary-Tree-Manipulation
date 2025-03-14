@@ -11,15 +11,72 @@
 /* Manipulation d'arbres binaires */
 
 binary_tree_p tree1 (void) {
-   return NULL;
+   
+   binary_tree_p tree,left_subtree,right_subtree;
+
+   tree = create_leaf(12) ;
+
+   left_subtree = create_leaf(9) ;
+   set_left_subtree(tree, left_subtree);
+
+   right_subtree = create_leaf(8) ;
+   set_right_subtree(tree,right_subtree);
+
+   //save_tree_in_file(tree,"tree1");
+	
+   return tree;
 }
 
 binary_tree_p tree2 (void) {
-   return NULL;
+
+   binary_tree_p tree,left_subtree,left_right_subtree, left_right_left_subtree  ;
+
+   tree = create_leaf(12) ;
+
+   left_subtree = create_leaf(9) ;
+   set_left_subtree(tree, left_subtree);
+
+   left_right_subtree = create_leaf(5) ;
+   set_right_subtree(left_subtree,left_right_subtree);
+
+	left_right_left_subtree = create_leaf(7) ;
+   set_left_subtree(left_right_subtree, left_right_left_subtree);
+
+   //save_tree_in_file(tree,"tree2");
+
+   return tree;
 }
 
 binary_tree_p tree3 (void) {
-   return NULL;
+
+   binary_tree_p tree,left_subtree,right_subtree,left_left_subtree, left_right_subtree, right_right_subtree, right_right_right_subtree, right_right_left_subtree ;
+
+   tree = create_leaf(12) ;
+
+   left_subtree = create_leaf(9) ;
+   set_left_subtree(tree, left_subtree);
+
+   right_subtree = create_leaf(8) ;
+   set_right_subtree(tree,right_subtree);
+
+   left_left_subtree = create_leaf(1) ;
+   set_left_subtree(left_subtree,left_left_subtree);
+
+	left_right_subtree = create_leaf(5) ;
+   set_right_subtree(left_subtree,left_right_subtree);
+
+   right_right_subtree = create_leaf(4) ;
+   set_right_subtree(right_subtree,right_right_subtree);
+
+   right_right_right_subtree = create_leaf(6) ;
+   set_right_subtree(right_right_subtree,right_right_right_subtree);
+
+   right_right_left_subtree = create_leaf(7) ;
+   set_left_subtree(right_right_subtree,right_right_left_subtree);
+
+   //save_tree_in_file(tree,"tree3");
+
+   return tree;
 }
 
 void print_tree (binary_tree_p a) {
