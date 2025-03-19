@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "BinaryTree.h"
+#include "Display.h"
 
 #define max(a,b) ((a)>(b)?(a):(b))
 
@@ -22,8 +24,8 @@ binary_tree_p tree1 (void) {
    right_subtree = create_leaf(8) ;
    set_right_subtree(tree,right_subtree);
 
-   //save_tree_in_file(tree,"tree1");
-	
+   save_tree_in_file(tree,"tree1");
+
    return tree;
 }
 
@@ -42,7 +44,7 @@ binary_tree_p tree2 (void) {
 	left_right_left_subtree = create_leaf(7) ;
    set_left_subtree(left_right_subtree, left_right_left_subtree);
 
-   //save_tree_in_file(tree,"tree2");
+   save_tree_in_file(tree,"tree2");
 
    return tree;
 }
@@ -74,32 +76,84 @@ binary_tree_p tree3 (void) {
    right_right_left_subtree = create_leaf(7) ;
    set_left_subtree(right_right_subtree,right_right_left_subtree);
 
-   //save_tree_in_file(tree,"tree3");
+   save_tree_in_file(tree,"tree3");
 
    return tree;
 }
 
-void print_tree (binary_tree_p a) {
-   ;
+int print_tree (binary_tree_p a) {
+   if (a != NULL) {
+
+      print_tree(a->left);
+
+      printf("%d ", a->val);
+
+      print_tree(a->right); 
+
+   }
 }
 
 int size (binary_tree_p a) {
-   return -1;
+   if (a == NULL){
+      return 0;
+   }
+   return 1 + size(a->left) + size(a->right);
 }
 
 int height (binary_tree_p a) {
-   return -1;
+   if (a == NULL){
+      return -1;
+   }
+   return 1 + max(height(a->left), height(a->right));
 }
 
 int nbLeaves(binary_tree_p a) {
-   return -1;
+   if (a == NULL){
+      return 0;
+   }
+
+   if (a->left == NULL && a->right == NULL){
+      return 1;
+   }
+
+   return nbLeaves(a->left) + nbLeaves(a->right);
+
 }
 
 
 /* Comptage d'arbres */
 
 int nbTrees(int n) {
-   return 0;
+   if (n == 0) {
+      return 1;
+   } 
+   else {
+      int total = 0;
+      for (int k = 0; k <= n - 1; k++) {
+         total += nbTrees(k) * nbTrees(n - k - 1);
+      }
+      return total;
+   }
+}
+int nbTreesEfficient(int n) {
+    int *C = malloc((n + 1) * sizeof(int));
+    
+    if (C == NULL) {
+        printf("Erreur d'allocation mémoire.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    C[0] = 1;  // Cas de base
+
+    for (int i = 1; i <= n; i++) {
+        C[i] = 0;
+        for (int k = 0; k < i; k++) {
+            C[i] += C[k] * C[i - 1 - k];
+        }
+    }
+    int result = C[n];
+    free(C);
+    return result;
 }
     
 /* Manipulation d'arbres binaires de recherche */
@@ -170,11 +224,15 @@ void BSTProperties (binary_tree_p a) {
 /* Programme principal */
 int main (int argc, char **argv) {
 
+   struct timespec debut, fin;
+   double temps_execution;
+
    int i;
 
    binary_tree_p a1 = tree1();
    binary_tree_p a2 = tree2();
    binary_tree_p a3 = tree3();
+
    
    binaryTreeProperties(a1);
    binaryTreeProperties(a2);
@@ -184,9 +242,13 @@ int main (int argc, char **argv) {
    destroy_binary_tree(a2);
    destroy_binary_tree(a3);
 
+   clock_gettime(CLOCK_MONOTONIC, &debut);
    for (i = 0; i <= 19; i++) {
-      printf("Number of binary trees with %d nodes is %d\n",i,(nbTrees(i)));
+      printf("Number of binary trees with %d nodes is %d\n",i,(nbTreesEfficient(i)));
    }
+   clock_gettime(CLOCK_MONOTONIC, &fin);
+   temps_execution = (fin.tv_sec - debut.tv_sec) + (fin.tv_nsec - debut.tv_nsec) / 1e9;
+   printf("Temps d'exécution : %.9f secondes\n", temps_execution);
 
    a1 = bst1();
    a2 = bst2();
