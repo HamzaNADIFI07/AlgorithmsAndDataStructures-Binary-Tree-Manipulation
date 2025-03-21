@@ -148,3 +148,11 @@ Le résultat de cette mesure de temps est **`Temps d'exécution : 3.643728000 se
 ##### Q7:
 
 Après avoir implémenter cette deuxième versions plus efficace, je constate une grande difference en terme de complexité temporelle, ainsi que le résultat de cette mesure de temps est **`Temps d'exécution : 0.000058000 secondes`**, ce qui représente une très grosse difference entre les deux méthodes d'implémentation.
+
+### Arbres binaires de recherche
+
+##### Q1:
+
+Après avoir défini l'arbre binaire de recherche à partir de l'algrithme d'insertion vu en cours, j'ai obtenu le resultat suivant:
+
+![treerech](../assets/images/treerech.jpg)
