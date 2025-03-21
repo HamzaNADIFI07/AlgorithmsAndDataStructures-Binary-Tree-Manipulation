@@ -4,6 +4,7 @@
 
 #include "BinaryTree.h"
 #include "Display.h"
+#include <linux/time.h>
 
 #define max(a,b) ((a)>(b)?(a):(b))
 
@@ -28,7 +29,7 @@ binary_tree_p tree1 (void) {
 
    return tree;
 }
-
+/*
 binary_tree_p tree2 (void) {
 
    binary_tree_p tree,left_subtree,left_right_subtree, left_right_left_subtree  ;
@@ -45,6 +46,34 @@ binary_tree_p tree2 (void) {
    set_left_subtree(left_right_subtree, left_right_left_subtree);
 
    save_tree_in_file(tree,"tree2");
+
+   return tree;
+}
+*/
+
+
+binary_tree_p tree2 (void) {
+
+   binary_tree_p tree,left_subtree,right_subtree, left_right_subtree,left_left_subtree, left_left_left_subtree  ;
+
+   tree = create_leaf(6) ;
+
+   left_subtree = create_leaf(4) ;
+   set_left_subtree(tree, left_subtree);
+
+   left_left_subtree = create_leaf(2) ;
+   set_left_subtree(left_subtree, left_left_subtree);
+
+   right_subtree = create_leaf(7) ;
+   set_right_subtree(tree, right_subtree);
+
+   left_right_subtree = create_leaf(5) ;
+   set_right_subtree(left_subtree,left_right_subtree);
+
+	left_left_left_subtree = create_leaf(1) ;
+   set_left_subtree(left_left_subtree, left_left_left_subtree);
+
+   save_tree_in_file(tree,"treerech");
 
    return tree;
 }
@@ -86,7 +115,7 @@ int print_tree (binary_tree_p a) {
 
       print_tree(a->left);
 
-      printf("%d ", a->val);
+      printf("%ld ", a->val);
 
       print_tree(a->right); 
 
@@ -129,31 +158,33 @@ int nbTrees(int n) {
    } 
    else {
       int total = 0;
-      for (int k = 0; k <= n - 1; k++) {
+      int k;
+      for ( k = 0; k <= n - 1; k++) {
          total += nbTrees(k) * nbTrees(n - k - 1);
       }
       return total;
    }
 }
 int nbTreesEfficient(int n) {
-    int *C = malloc((n + 1) * sizeof(int));
+   int *C = malloc((n + 1) * sizeof(int));
     
-    if (C == NULL) {
-        printf("Erreur d'allocation mémoire.\n");
-        exit(EXIT_FAILURE);
-    }
+   if (C == NULL) {
+      printf("Erreur d'allocation mémoire.\n");
+      exit(EXIT_FAILURE);
+   }
 
-    C[0] = 1;  // Cas de base
-
-    for (int i = 1; i <= n; i++) {
-        C[i] = 0;
-        for (int k = 0; k < i; k++) {
-            C[i] += C[k] * C[i - 1 - k];
-        }
-    }
-    int result = C[n];
-    free(C);
-    return result;
+   C[0] = 1;
+   int i;
+   int k;
+   for ( i = 1; i <= n; i++) {
+      C[i] = 0;
+      for ( k = 0; k < i; k++) {
+         C[i] += C[k] * C[i - 1 - k];
+      }
+   }
+   int result = C[n];
+   free(C);
+   return result;
 }
     
 /* Manipulation d'arbres binaires de recherche */
