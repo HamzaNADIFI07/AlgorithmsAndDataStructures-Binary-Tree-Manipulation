@@ -156,3 +156,65 @@ Après avoir implémenter cette deuxième versions plus efficace, je constate un
 Après avoir défini l'arbre binaire de recherche à partir de l'algrithme d'insertion vu en cours, j'ai obtenu le resultat suivant:
 
 ![treerech](../assets/images/treerech.jpg)
+
+##### Q3:
+
+Pour s'assurer simplement que les arbres construits sont bien des **arbres binaires de recherche**, il faudra verifier que toutes les valeurs du sous-arbre gauche doivent être **inférieures ou égaleS** à la valeur du nœud et que toutes les valeurs du sous-arbre droit doivent être **strictement supérieures** à la valeur du nœud.
+
+##### Q5:
+
+Après avoir implémenter la fonction **add** qui ajoute une valeur à un arbre binaire de recherche ainsi que les fonctions **bst2** et **bst3** permettant la création des arbres binaires de recherche suivants en utilisant la fonction **add** dans lesquels les valeurs sont insérées successivement en suivant l'ordre donné :
+
+- arbre 2 : 5, 4, 2, 7, 6, 1
+
+![TreeRech2](../images/treerech2.jpg)
+
+- arbre 3 : 7, 1, 4, 5, 6, 2
+
+![TreeRech3](../images/treerech3.jpg)
+
+##### Q7:
+
+Pour les 3 arbres, la recherche de la valeur 0 , s'effectue en 6 comparaisons parce que 0 n'est present dans aucun des 3 arbres
+donc ce qui fait qu'on est obligé de passer sur tout les noeuds de  l'arbre , vu que les 3 arbres sont de tailles 6 donc on effectue 6 compraisons.
+
+##### Q8:
+
+La valeur `minimal` de l'arbre binaire de recherche est **la premiere feuille à gauche**.
+
+La valeur `maximal` de l'arbre binaire de recherche est **la premiere feuille à droite**.
+
+### L'entier mystérieux
+
+Après avoir implémenter la procédure de jeu `play`, qui permet de faire jouer l'ordinateur à l'entier mystérieux en utilisant un ABR avec une option d'intéraction avec le joueur via le terminale.
+
+En compilant et éxecutant le programme avec les commandes suivantes.
+
+```bash
+make  # Compile le programme
+./Test_tree # Execute le programme
+```
+J'ai obtenu comme résultat:
+
+```bash
+Mysterious tree between 12 and 24:
+12 13 14 15 16 17 18 19 20 21 22 23 24 
+choisir un nombre entre 12 et 24 ? :
+20
+
+ Est-ce 18 ? 
+
+ Trop petit 
+
+ Est-ce 21 
+ 
+ Trop grand 
+
+ Est-ce 19 
+ 
+ Trop petit 
+
+ Est-ce 20 
+ 
+ C'est gagné !
+```
