@@ -167,11 +167,11 @@ Après avoir implémenter la fonction **add** qui ajoute une valeur à un arbre 
 
 - arbre 2 : 5, 4, 2, 7, 6, 1
 
-![TreeRech2](../images/treerech2.jpg)
+![TreeRech2](../assets/images/treerech2.jpg)
 
 - arbre 3 : 7, 1, 4, 5, 6, 2
 
-![TreeRech3](../images/treerech3.jpg)
+![TreeRech3](../assets/images/treerech3.jpg)
 
 ##### Q7:
 
